@@ -983,6 +983,7 @@ function () {
       }
 
       this.slides.forEach(function (slide) {
+        slide.classList.add("animated");
         slide.style.display = 'none';
       });
       this.slides[this.slideIndex - 1].style.display = 'block';
@@ -1000,12 +1001,20 @@ function () {
       this.btns.forEach(function (item) {
         item.addEventListener('click', function () {
           _this.plusSlides(1);
+
+          _this.slides[_this.slideIndex - 1].classList.remove('slideInDown');
+
+          _this.slides[_this.slideIndex - 1].classList.add('slideInUp');
         });
         item.parentNode.previousElementSibling.addEventListener('click', function (e) {
           e.preventDefault();
           _this.slideIndex = 1;
 
           _this.showSlides(_this.slideIndex);
+
+          _this.slides[_this.slideIndex - 1].classList.remove('slideInUp');
+
+          _this.slides[_this.slideIndex - 1].classList.add('slideInDown');
         });
       });
       this.showSlides(this.slideIndex); //первичная инициализация слайдера

@@ -16,6 +16,7 @@ export default class Slider {
         }
 
         this.slides.forEach(slide => {
+            slide.classList.add("animated");
             slide.style.display = 'none';
         });
 
@@ -30,12 +31,16 @@ export default class Slider {
         this.btns.forEach(item => {
             item.addEventListener('click', () => {
                 this.plusSlides(1);
+                this.slides[this.slideIndex - 1].classList.remove('slideInDown');
+                this.slides[this.slideIndex - 1].classList.add('slideInUp');
             });
 
             item.parentNode.previousElementSibling.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.slideIndex = 1;
                 this.showSlides(this.slideIndex);
+                this.slides[this.slideIndex - 1].classList.remove('slideInUp');
+                this.slides[this.slideIndex - 1].classList.add('slideInDown');
             });
         });
 
