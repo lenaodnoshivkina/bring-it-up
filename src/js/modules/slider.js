@@ -31,8 +31,8 @@ export default class Slider {
         this.btns.forEach(item => {
             item.addEventListener('click', () => {
                 this.plusSlides(1);
-                this.slides[this.slideIndex - 1].classList.remove('slideInDown');
-                this.slides[this.slideIndex - 1].classList.add('slideInUp');
+                this.slides[this.slideIndex - 1].classList.remove('slideInUp');
+                this.slides[this.slideIndex - 1].classList.add('slideInDown');
             });
 
             item.parentNode.previousElementSibling.addEventListener('click', (e) => {

@@ -1002,9 +1002,9 @@ function () {
         item.addEventListener('click', function () {
           _this.plusSlides(1);
 
-          _this.slides[_this.slideIndex - 1].classList.remove('slideInDown');
+          _this.slides[_this.slideIndex - 1].classList.remove('slideInUp');
 
-          _this.slides[_this.slideIndex - 1].classList.add('slideInUp');
+          _this.slides[_this.slideIndex - 1].classList.add('slideInDown');
         });
         item.parentNode.previousElementSibling.addEventListener('click', function (e) {
           e.preventDefault();
