@@ -1,9 +1,8 @@
-export default class Slider {
-    constructor(page, btns){
-        this.page = document.querySelector(page);
-        this.slides = this.page.children;
-        this.btns = document.querySelectorAll(btns);
-        this.slideIndex = 1;
+import Slider from './slider';
+
+export default class MainSlider extends Slider {
+    constructor(btns){
+        super(btns);
     }
 
     showSlides(n){
@@ -48,16 +47,18 @@ export default class Slider {
         this.btns.forEach(item => {
             item.addEventListener('click', () => {
                 this.plusSlides(1);
-                this.slides[this.slideIndex - 1].classList.remove('slideInUp');
-                this.slides[this.slideIndex - 1].classList.add('slideInDown');
+                if(this.slides[this.slideIndex - 2]){
+                    this.slides[this.slideIndex - 2].classList.remove('fadeIn');
+                }
+                this.slides[this.slideIndex - 1].classList.add('fadeIn');
             });
 
             item.parentNode.previousElementSibling.addEventListener('click', (e) => {
                 e.preventDefault();
+                this.slides[this.slideIndex - 1].classList.remove('fadeIn');
                 this.slideIndex = 1;
                 this.showSlides(this.slideIndex);
-                this.slides[this.slideIndex - 1].classList.remove('slideInUp');
-                this.slides[this.slideIndex - 1].classList.add('slideInDown');
+                this.slides[this.slideIndex - 1].classList.add('fadeIn');
             });
         });
 
