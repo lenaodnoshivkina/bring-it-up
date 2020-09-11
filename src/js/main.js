@@ -5,8 +5,15 @@ import Difference from './modules/difference';
 import Form from './modules/form';
 
 window.addEventListener('DOMContentLoaded', () => {
-    const slider = new MainSlider({btns: '.next', container: '.page'});
+    const slider = new MainSlider({next: '.next', container: '.page'});
     slider.render(); 
+
+    const modulePageSlider = new MainSlider({
+        container: '.moduleapp',
+        next: '.next',
+        prev: '.prevmodule'
+    });
+    modulePageSlider.render();
 
     const showUpSlider = new MiniSlider({
         container: ".showup__content-slider",

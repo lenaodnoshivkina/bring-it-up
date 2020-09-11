@@ -1,8 +1,8 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider {
-    constructor(btns){
-        super(btns);
+    constructor(prev, next){
+        super(prev, next);
     }
 
     showSlides(n){
@@ -39,12 +39,9 @@ export default class MainSlider extends Slider {
         this.showSlides(this.slideIndex += n);
     }
 
-    render() {
-        try{
-            this.hanson = document.querySelector('.hanson');
-        }catch(e){}
+    bindTriggerBtns(){
 
-        this.btns.forEach(item => {
+        this.next.forEach(item => {
             item.addEventListener('click', () => {
                 this.plusSlides(1);
                 if(this.slides[this.slideIndex - 2]){
@@ -60,9 +57,28 @@ export default class MainSlider extends Slider {
                 this.showSlides(this.slideIndex);
                 this.slides[this.slideIndex - 1].classList.add('fadeIn');
             });
+    
         });
 
-        this.showSlides(this.slideIndex);
-        //первичная инициализация слайдера
+        this.prev.forEach(item => {
+            item.addEventListener('click', () => {
+                this.slides[this.slideIndex-1].classList.remove('fadeIn');
+                this.plusSlides(-1);
+                this.slides[this.slideIndex-1].classList.add('fadeIn');
+            });
+        });
+
+    }
+
+    render() {
+        if(this.container){
+            try{
+                this.hanson = document.querySelector('.hanson');
+            }catch(e){}
+    
+            this.showSlides(this.slideIndex);
+            this.bindTriggerBtns();
+        
+        }
     }
 }

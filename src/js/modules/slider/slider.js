@@ -1,7 +1,7 @@
 export default class Slider {
     constructor({container = null,
         slideClass = null,
-        btns = null, 
+        //btns = null, 
         next = null, 
         prev = null,
         activeClass = '',
@@ -13,12 +13,12 @@ export default class Slider {
         if(slideClass){
             this.slides = document.getElementsByClassName(slideClass);
         }else{
-            this.slides = this.container.children;
+            try{this.slides = this.container.children;}catch(e){}
         }
               
-        this.btns = document.querySelectorAll(btns);
-        this.prev = document.querySelector(prev);
-        this.next = document.querySelector(next);
+        //this.btns = document.querySelectorAll(btns);
+        this.prev = document.querySelectorAll(prev);
+        this.next = document.querySelectorAll(next);
         this.activeClass = activeClass;
         this.animate = animate;
         this.autoplay = autoplay;

@@ -27,12 +27,16 @@ export default class MiniSlider extends Slider{
     }
 
     bindTriggers(){
-        this.next.addEventListener('click', () => this.nextSlide());
+        this.next.forEach(btn => {
+            btn.addEventListener('click', () => this.nextSlide());
+        });
 
-        this.prev.addEventListener('click', () => {
-            let active = this.slides[this.slides.length - 1];
-            this.container.insertBefore(active, this.slides[0]);
-            this.decorizeSlides();
+        this.prev.forEach(btn => {
+            btn.addEventListener('click', () => {
+                let active = this.slides[this.slides.length - 1];
+                this.container.insertBefore(active, this.slides[0]);
+                this.decorizeSlides();
+            });
         });
     }
 
@@ -45,27 +49,28 @@ export default class MiniSlider extends Slider{
     }
 
     init(){
-        
-        this.container.style.cssText = `
-            display: flex;
-            flex-wrap: wrap;
-            overflow: hidden;
-            align-items: flex-start;
-        `;
+        try{
+                this.container.style.cssText = `
+                display: flex;
+                flex-wrap: wrap;
+                overflow: hidden;
+                align-items: flex-start;
+            `;
 
-        this.bindTriggers();
-        this.decorizeSlides();
+            this.bindTriggers();
+            this.decorizeSlides();
 
-        if (this.autoplay) {
-            let autoplay = setInterval(() => this.nextSlide(), 5000);
+            if (this.autoplay) {
+                let autoplay = setInterval(() => this.nextSlide(), 5000);
 
-            this.container.addEventListener('mouseenter', () => {
-                this.activateAnimation(autoplay, true);
-            });
-        
-            this.container.addEventListener('mouseleave', () => {
-                autoplay = this.activateAnimation(autoplay);
-            });
-        }
+                this.container.addEventListener('mouseenter', () => {
+                    this.activateAnimation(autoplay, true);
+                });
+            
+                this.container.addEventListener('mouseleave', () => {
+                    autoplay = this.activateAnimation(autoplay);
+                });
+            }
+        }catch(e){}
     }
 }
