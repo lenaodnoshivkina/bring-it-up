@@ -50,14 +50,15 @@ export default class MainSlider extends Slider {
                 this.slides[this.slideIndex - 1].classList.add('fadeIn');
             });
 
-            item.parentNode.previousElementSibling.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.slides[this.slideIndex - 1].classList.remove('fadeIn');
-                this.slideIndex = 1;
-                this.showSlides(this.slideIndex);
-                this.slides[this.slideIndex - 1].classList.add('fadeIn');
-            });
-    
+            if(!item.parentNode.previousElementSibling.classList.contains('module__info-book')){
+                item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.slides[this.slideIndex - 1].classList.remove('fadeIn');
+                    this.slideIndex = 1;
+                    this.showSlides(this.slideIndex);
+                    this.slides[this.slideIndex - 1].classList.add('fadeIn');
+                });
+            }
         });
 
         this.prev.forEach(item => {
