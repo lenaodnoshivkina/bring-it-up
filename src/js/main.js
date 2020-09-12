@@ -3,6 +3,7 @@ import MiniSlider from './modules/slider/slider-mini';
 import VideoPlayer from './modules/playVideo';
 import Difference from './modules/difference';
 import Form from './modules/form';
+import Accordion from './modules/accordion';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({next: '.next', container: '.page'});
@@ -49,4 +50,6 @@ window.addEventListener('DOMContentLoaded', () => {
     new Difference('.officerold', '.officernew', '.officer__card-item').init();
 
     new Form('.form').init();
+
+    new Accordion('.plus__content').init();
 });
